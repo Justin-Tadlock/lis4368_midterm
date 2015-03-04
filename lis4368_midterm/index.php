@@ -183,7 +183,7 @@
                              * 
                              * @return string
                              */
-                            public function printString() {
+                            public function toString() {
                                 $str = "Make : "  . $this->getMake()   . "<br />" .
                                        "Model: "  . $this->getModel()  . "<br />" . 
                                        "Year : "  . $this->getYear()   . "<br />" . 
@@ -264,25 +264,27 @@
                              * @param float $price
                              */
                             protected function setPrice($price) {
-                                try {
+                                if( is_float($price) || is_int($price)) {
                                     $this->price = (float)$price;
-                                } catch (Exception $ex) {
-                                    throw new Exception("Price must be a numeric value!");
+                                }
+                                else {
+                                    throw new Exception( $this->getModel() . "'s price must be a numeric value!");
                                 }
                             }
                         }
                         
+                        
+                        //Creating new Vehicle objects
                         try {
                             $car = new Vehicle("Chevy", "Colorado",  "2015", 20120);
-                            $car2 = new Vehicle("Chevy", "Silverado", "2015", "4900o"); //has an OH instead of zero
+                            echo $car->toString() . "<br />";
                             
-                            echo $car.printString() . "<br />";
-                            echo $car2.toString() . "<br />";
+                            //Commenting out the code that will flag an error.
+                            //$car2 = new Vehicle("Chevy", "Silverado", "2015", "4900o"); //has an OH instead of zero
+                            //echo $car2->toString() . "<br />";
                         } catch (Exception $ex) {
-                            echo "Error, " . $ex . "<br />";
+                            echo "Error, " . $ex->getMessage() . "<br />";
                         }
-                        
-                        
                     ?>
                 </p>
             </div>
@@ -291,19 +293,52 @@
                 <h1>
                     8. Consider the following array:
                 </h1>
-                <code style="text-overflow: wrap;">
-                    array('Harrys' => ['rating' => '***', 'location' => 
-                    'Downtown'], 'McDonalds' <br /> 
-                    => ['rating' => '**', 'location' => 'Everywhere'], 
-                    'Super Perros' => ['rating' <br />
-                    => '****', 'location' => 'W Tennessee'])
-                </code>. <br />
+                <code>
+                    array(<br />
+                        'Harrys' => <br />
+                            ['rating' => '***', 'location' => 'Downtown'], <br />
+                        'McDonalds' => <br />
+                            ['rating' => '**', 'location' => 'Everywhere'], <br /> 
+                        'Super Perros' => <br />
+                            ['rating' => '****', 'location' => 'W Tennessee']<br />
+                        )
+                </code>
+                <br />
                 <h1>
                     Write some PHP code (using loops) to print an HTML table 
                     from this data.
                 </h1>
                 <hr />
-                <p></p>
+                    <?php
+                        $array = array(
+                        'Harrys' => 
+                            ['rating' => '***', 'location' => 'Downtown'], 
+                        'McDonalds' => 
+                            ['rating' => '**', 'location' => 'Everywhere'],
+                        'Super Perros' => 
+                            ['rating' => '****', 'location' => 'W Tennessee']
+                        );
+                    ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Rating</th>
+                            <th>Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach($array as $key => $value) {
+                                echo "<tr>\n";
+                                echo "<td>" . $key . "</td>\n";
+                                echo "<td>" . $value['rating'] . "</td>\n";
+                                echo "<td>" . $value['location'] . "</td>\n";
+                                echo "</tr>\n";
+                            }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
         
