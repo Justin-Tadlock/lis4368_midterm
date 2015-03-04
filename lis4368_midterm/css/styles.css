@@ -1,0 +1,61 @@
+/* 
+    Created on : Jan 28, 2015, 4:45:49 PM
+    Author     : Justin Tadlock
+*/
+* { 
+    font-size: 100%;
+    line-height: 1.3;
+}
+body {
+    background-color: grey;
+    margin-top: 50px;
+}
+nav {
+    position: fixed !important;
+    
+    width:100%;
+    height: 50px !important;
+    
+    top: 0 !important;
+}
+h2, h4, p {
+    padding:0;
+    margin:0;
+}
+h2,h4 {
+    text-align:center;
+}
+
+#wrapper > div {
+    display:block;
+    width: 45em;
+    
+    margin: 0 auto 2em;
+    padding: 2em;
+
+    background-color: white;
+}
+#wrapper > div h1 {
+    font-size: 110%;
+}
+#wrapper > div table th, 
+#wrapper > div table td {
+    border: 1px;
+    border-style: none none solid solid;
+}
+#wrapper > div table th {
+    background-color: rgb(230,230,230);
+}
+#wrapper > div table td {
+    padding: 5px;
+}
+#wrapper > div table td:first-child {
+    width: 13em;
+}
+.dormElement {
+    display:inline-block; 
+    width:10em; 
+    
+    margin: 0; 
+    padding: 0.3em 0.5em;
+}
